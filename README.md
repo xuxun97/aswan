@@ -277,3 +277,24 @@ Website：https://security.immomo.com
 
 WeChat:<br>
 <img src="https://momo-mmsrc.oss-cn-hangzhou.aliyuncs.com/img-1c96a083-7392-3b72-8aec-bad201a6abab.jpeg" width="200" hegiht="200" align=center /><br>
+
+
+
+flowchart TD
+    A[开始] --> B{检查缓存}
+    B -->|已有缓存| C[返回缓存结果]
+    B -->|无缓存| D{校验输入}
+    D -->|无效输入| E[返回空]
+    D -->|有效输入| F[初始化Map]
+    F --> G[尝试正向偏移]
+    G --> H{匹配成功?}
+    H -->|是| I[返回匹配结果]
+    H -->|否| J[尝试负向偏移]
+    J --> K{匹配成功?}
+    K -->|是| I
+    K -->|否| L[使用1:1对应]
+    L --> M[返回结果]
+
+    style H fill:#f9f,stroke:#333,stroke-width:4px
+    style K fill:#f9f,stroke:#333,stroke-width:4px
+    style F fill:#bbf,stroke:#333,stroke-width:4px
